@@ -18,6 +18,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*--------------------------------------------------------------
+# slef
+--------------------------------------------------------------*/
+
+.error {
+  color: red;
+}
+
+.cardBox {
+  display: flex;
+  column-gap: 20px;
+  flex-wrap: wrap;
+}
+
+/*--------------------------------------------------------------
 # Preloader
 --------------------------------------------------------------*/
 #preloader {
@@ -63,9 +77,20 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+
+/*--------------------------------------------------------------
+# Admin-site
+--------------------------------------------------------------*/
+
+.mainBox{
+  padding: 50px;
+}
+
 /*--------------------------------------------------------------
 # Back to top button
 --------------------------------------------------------------*/
+
+
 .back-to-top {
   position: fixed;
   visibility: hidden;
@@ -1154,6 +1179,51 @@ section {
     color: #fff;
     background: #FF6337;
   }
+}
+/*------------------------------------------------------------
+Doctor
+-------------------------------------------------------------*/
+.doctor .member .pic img {
+  height: 300px;
+  width: 300px;
+  border: 1px solid black;
+}
+
+.doctor .member .member-info {
+  line-height: 50px;
+  padding-left: 50px;
+}
+
+.doctor .member .social {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.doctor .member .social a {
+  transition: ease-in-out 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  width: 32px;
+  height: 32px;
+  background: #a0bcd5;
+}
+
+.doctor .member .social a i {
+  color: #fff;
+  font-size: 16px;
+  margin: 0 2px;
+}
+
+.doctor .member .social a:hover {
+  background: #FF6337;
+}
+
+.doctor .member .social a + a {
+  margin-left: 8px;
 }
 
 /*--------------------------------------------------------------

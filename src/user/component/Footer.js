@@ -1,4 +1,5 @@
 import React from 'react';
+import Icon from './UI/iconBox/Icon';
 
 function Footer(props) {
     return (
@@ -17,7 +18,7 @@ function Footer(props) {
                     </div>
                 </div>
                 <div className="social-links text-center text-md-right pt-3 pt-md-0">
-                    <a href="/" className="twitter"><i className="bx bxl-twitter" /></a>
+                    <Icon href="/" className="twitter"><i className="ri-twitter-fill" /></Icon>
                     <a href="/" className="facebook"><i className="bx bxl-facebook" /></a>
                     <a href="/" className="instagram"><i className="bx bxl-instagram" /></a>
                     <a href="/" className="google-plus"><i className="bx bxl-skype" /></a>

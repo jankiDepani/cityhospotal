@@ -1,0 +1,46 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "Doctors": [
+    {
+      "id": 1,
+      "name": "Amit",
+      "degree": "MBBS"
+    },
+    {
+      "id": 2,
+      "name": "Amit",
+      "degree": "MBBS"
+    },
+    {
+      "id": 3,
+      "name": "Demo",
+      "degree": "MBBS"
+    },
+    {
+      "id": 6,
+      "name": "Mayur",
+      "degree": "MBBS"
+    },
+    {
+      "id": 5,
+      "name": "Amit",
+      "degree": "MBBS"
+    }
+  ]
+}
