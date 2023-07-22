@@ -1,0 +1,66 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "doctors": [
+    {
+      "id": 1,
+      "name": "Amit",
+      "degree": "MBBS"
+    },
+    {
+      "id": 2,
+      "name": "Amit",
+      "degree": "MBBS"
+    },
+    {
+      "id": 3,
+      "name": "Demo",
+      "degree": "MBBS"
+    },
+    {
+      "id": 6,
+      "name": "Mayur",
+      "degree": "MBBS"
+    },
+    {
+      "name": "ABCDR",
+      "degree": "88",
+      "id": 7
+    },
+    {
+      "name": "OPU",
+      "degree": "88855",
+      "id": 8
+    },
+    {
+      "name": "adcaa",
+      "degree": "3333",
+      "id": 9
+    },
+    {
+      "name": "WWWW",
+      "degree": "34567",
+      "id": 10
+    },
+    {
+      "name": "janki",
+      "degree": "sxaismxkms",
+      "id": 11
+    }
+  ]
+}
