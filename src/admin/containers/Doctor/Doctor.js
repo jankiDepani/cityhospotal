@@ -1,15 +1,33 @@
 import React, { useEffect } from 'react';
 import DoctorsData from './DoctorsForm';
 import { useDispatch, useSelector } from 'react-redux';
-import { getDoctor } from '../../../redux/action/Docter.action';
+import { AddDoctos, deleteDoctor, getDoctor, updateDoctos } from '../../../redux/action/Docter.action';
 import { DataGrid } from '@mui/x-data-grid';
+import { IconButton } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 function Doctor(props) {
     const dispacth = useDispatch();
-    const doctors = useSelector(state => state.doctors)
+    const doctors = useSelector(state => state.doctors);
+    const [update, setUpdate] = React.useState(null);
 
     const handleDoctorData = (data) => {
         console.log(data);
+        if (update) {
+            dispacth(updateDoctos(data))
+        }else {
+            dispacth(AddDoctos(data))
+        }
+        setUpdate(null);
+    }
+
+    const handleDelete = (id) => {
+        dispacth(deleteDoctor(id))
+    }
+
+    const handleupdate = (data) => {
+        setUpdate(data)
     }
 
     useEffect(() => {
@@ -18,27 +36,29 @@ function Doctor(props) {
 
     const columns = [
         { field: 'id', headerName: 'ID', width: 70 },
-        { field: 'name', headerName: 'doctor Name', width: 130 },
-        { field: 'degree', headerName: 'degree', width: 130 },
-        // {
-        //     field: 'action',
-        //     headerName: 'Actions',
-        //     renderCell: (params) => (
-        //         <>
-        //             <IconButton aria-label="delete" onClick={() => handleDelete(params.row.id)}>
-        //                 <DeleteIcon />
-        //             </IconButton>
-        //             <IconButton aria-label="delete" onClick={() => handleupdate(params.row)}>
-        //                 <EditIcon />
-        //             </IconButton>
-        //         </>
-        //     )
-        // }
+        { field: 'doctorName', headerName: 'doctor Name', width: 130 },
+        { field: 'doctorDegignation', headerName: 'degree', width: 130 },
+        { field: 'doctorDescripstion', headerName: 'detailes', width: 130 },
+        { field: 'doctorImg', headerName: 'doctors photo', width: 130 },
+        {
+            field: 'action',
+            headerName: 'Actions',
+            renderCell: (params) => (
+                <>
+                    <IconButton aria-label="delete" onClick={() => handleDelete(params.row.id)}>
+                        <DeleteIcon />
+                    </IconButton>
+                    <IconButton aria-label="delete" onClick={() => handleupdate(params.row)}>
+                        <EditIcon />
+                    </IconButton>
+                </>
+            )
+        }
     ];
 
     return (
         <div className='mainBox'>
-            <DoctorsData onhandleSubmit={handleDoctorData} />
+            <DoctorsData onhandleSubmit={handleDoctorData} updateData={update}/>
             <div style={{ height: 400, width: '100%' }}>
                 <DataGrid
                     rows={doctors.doctors}

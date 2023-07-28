@@ -10,3 +10,54 @@ export const getDoctor = () => (dispacth) => {
         console.log("error");
     }
 }
+export const AddDoctos = (data) => (dispacth) => {
+    try {
+        fetch("http://localhost:3004/Doctors", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: JSON.stringify(data)  
+        })
+        .then((response) => response.json())
+        .then((data) => dispacth({type:ActionTypes.ADD_DOCTOR_DATA, payload:data}))
+        .catch((error) => console.log(error))
+    }catch {
+        console.log("error");
+    }
+
+}
+
+export const deleteDoctor = (id) => (dispacth) => {
+    try {
+        fetch("http://localhost:3004/Doctors/" + id, {
+            method: "DELETE" 
+        })
+        .then(dispacth({type:ActionTypes.DELETE_DOCTOR_DATA, payload:id}))
+        .catch((error) => console.log(error))
+    }catch {
+        console.log("error");
+    }
+
+}
+
+export const updateDoctos = (data) => (dispacth) => {
+    console.log(data);
+    try {
+        fetch("http://localhost:3004/Doctors/" + data.id, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: JSON.stringify(data)  
+        })
+        .then((response) => response.json())
+        .then((data) => dispacth({type:ActionTypes.DELETE_DOCTOR_DATA, payload:data}))
+        .catch((error) => console.log(error))
+    }catch {
+        console.log("error");
+    }
+
+}

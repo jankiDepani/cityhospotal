@@ -10,8 +10,16 @@ import { useFormik } from 'formik';
 import * as Yup from "yup";
 
 
-export default function DoctorData({ onhandleSubmit }) {
+export default function DoctorData({ onhandleSubmit, updateData }) {
     const [open, setOpen] = React.useState(false);
+
+    React.useEffect(() => {
+        if (updateData) {
+            handleClickOpen();
+            Formik.setValues(updateData);
+        }
+
+    }, [updateData])
 
     const contectSchema = Yup.object().shape({
         doctorName: Yup.string().min(2).required().matches(/^[a-zA-Z ]+$/, "please eneter vaild name"),
@@ -40,6 +48,7 @@ export default function DoctorData({ onhandleSubmit }) {
         validationSchema: contectSchema,
         onSubmit: (values) => {
             onhandleSubmit(values);
+            handleClose();
             // alert(JSON.stringify(values, null, 2));
         },
     });
