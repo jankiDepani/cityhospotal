@@ -2,19 +2,17 @@ import React, { useEffect, useState } from 'react';
 import ListMdicine from './ListMdicine';
 import { Input } from 'reactstrap';
 import Heading from '../../component/UI/heading/Heading';
+import { useDispatch, useSelector } from 'react-redux';
+import { getMadicineData } from '../../../redux/action/Madicine.action';
 
 function Madicine(props) {
 
+    const dispacth = useDispatch();
     const [data, setData] = useState([]);
     const [filterData, setFilterData] = useState([]);
-
+    const Madicine = useSelector(state => state.madicines);
     useEffect(() => {
-        let localData = JSON.parse(localStorage.getItem("madicine"));
-
-        if (localData) {
-            setData(localData);
-        }
-
+        dispacth(getMadicineData());
     }, [])
 
     const handleSearch = (val) => {
@@ -55,7 +53,7 @@ function Madicine(props) {
                     />
                     <br />
                 <div className='row'>
-                    <ListMdicine mData={filterData.length > 0 ? filterData : data} />
+                    <ListMdicine mData={Madicine.madicines} />
                 </div>
             </div>
         </section>

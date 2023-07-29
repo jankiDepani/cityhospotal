@@ -7,9 +7,9 @@ function ListMdicine({ mData }) {
             {
                 mData.map((v, i) => {
                     return (
-                        <div className='col-md-3 cardBox'>
+                        <>
                             <CoustomCard value={v} />
-                        </div>
+                        </>
                     )
                 })
             }
