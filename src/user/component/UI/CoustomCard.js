@@ -1,8 +1,7 @@
 import React from 'react';
 import { Button, Card, CardBody, CardSubtitle, CardText, CardTitle } from 'reactstrap';
 
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-function CoustomCard({ value }) {
+function CoustomCard({ value, btnData, onclick}) {
     return (
         <div className='col-md-4'>
             <Card
@@ -39,13 +38,12 @@ function CoustomCard({ value }) {
                         {value.desc}
                     </CardText>
                     {
-                        value.btnData ?
-                            <Button>
-                                Button
+                        btnData ?
+                            <Button onClick={() => onclick(value.id)}>
+                                {btnData}
                             </Button>
                             : null
                     }
-                    <ShoppingCartIcon />
                 </CardBody>
             </Card>
         </div>

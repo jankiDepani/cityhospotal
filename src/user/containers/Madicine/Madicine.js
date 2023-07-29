@@ -29,6 +29,10 @@ function Madicine(props) {
         setFilterData(fData);
     }
 
+    const handleAddtocart = (id) =>  {
+        console.log("add to cart" + id);
+    }
+
     return (
         <section id="contact" className="contact">
             <div className="container">
@@ -53,7 +57,7 @@ function Madicine(props) {
                     />
                     <br />
                 <div className='row'>
-                    <ListMdicine mData={Madicine.madicines} />
+                    <ListMdicine mData={Madicine.madicines} onaddtocart={handleAddtocart} />
                 </div>
             </div>
         </section>
