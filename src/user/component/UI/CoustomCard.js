@@ -35,7 +35,7 @@ function CoustomCard({ value, btnData, onclick}) {
                         {value.exipDate}
                     </CardSubtitle>
                     <CardText>
-                        {value.desc}
+                        {  value.desc.length > 50 ? value.desc.substring(0,50) + '...' : value.desc}
                     </CardText>
                     {
                         btnData ?
