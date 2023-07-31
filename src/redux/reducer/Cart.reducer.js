@@ -6,14 +6,25 @@ const initstate = {
     error:null
 }
 
-export const CartReducer = (state=initstate, action) => {
-    console.log(action);
+export const Cartreducer =(state=initstate,action)=>{
+
     switch(action.type){
+
         case ActionTypes.ADD_TO_CART:
-            return {
-                cart: state
+            let item=state.cart.some((v)=>v.pid===action.payload.pid)
+            
+            if(item){
+                    let index=state.cart.findIndex((v)=>v.pid===action.payload.pid)
+                    state.cart[index].qty++;
+            }else{
+                state.cart.push(action.payload)
             }
-        default:
-            return state
-    }
+            return{
+                ...state,
+                isloading:false,
+                error:null
+            }
+            default:
+                return state
+    }
 }
