@@ -18,16 +18,19 @@ import AdminRoute from "./Routes/Adminroute";
 import { Provider } from "react-redux";
 import { configerStore } from "./redux/store";
 // import Auth2 from "./containers/Auth2";
+import { PersistGate } from 'redux-persist/integration/react'
 
 
 function App() {
-  const store = configerStore();
+  const {store, persistor} = configerStore();
   return (
     <Provider store={store}>
-      <Routes>
-        <Route path="/*" element={<UserRoute />} />
-        <Route path="/admin/*" element={<AdminRoute />} />
-      </Routes>
+      <PersistGate loading={null} persistor={persistor}>
+        <Routes>
+          <Route path="/*" element={<UserRoute />} />
+          <Route path="/admin/*" element={<AdminRoute />} />
+        </Routes>
+      </PersistGate>
     </Provider>
 
   );

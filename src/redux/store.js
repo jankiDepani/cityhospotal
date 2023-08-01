@@ -1,9 +1,20 @@
 import { applyMiddleware, createStore } from "redux"
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
 import { rootReducer } from "./reducer"
 import thunk from "redux-thunk"
 
-export const configerStore = () =>{
-    const store = createStore(rootReducer, applyMiddleware(thunk));
+const persistConfig = {
+    key: 'root',
+    storage,
+    whitelist: ['madicines', 'addtocart']
+}
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 
-    return store;
+
+export const configerStore = () => {
+    const store = createStore(persistedReducer, applyMiddleware(thunk));
+    let persistor = persistStore(store)
+
+    return { store, persistor };
 }
