@@ -44,7 +44,7 @@ function Cart(props) {
                                                 <p><span className="text-muted">Expiry: </span>{v.expiry}</p>
                                             </div>
                                             <div className="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                                <Button className="btn btn-link px-2" disabled={v.qty >= 2 ? false : true} onClick={() => handleCartDcr(v.pid)}>
+                                                <Button className="btn btn-link px-2" disabled={v.qty > 1 ? false : true} onClick={() => handleCartDcr(v.pid)}>
                                                     <i className="fas fa-minus" />
                                                 </Button>
                                                 <span>{v.qty}</span>
