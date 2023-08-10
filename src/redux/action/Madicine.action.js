@@ -1,3 +1,4 @@
+import { GetMadicineData } from "../../common/apis/Doctors.api";
 import * as ActionTypes from "../ActionType";
 
 export const getMadicineData = () => (dispacth) => {
