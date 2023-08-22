@@ -28,7 +28,6 @@ export const Cartreducer = (state = initstate, action) => {
         case ActionTypes.INCR_QTY:
             let IncrementId = state.cart.findIndex((v) => v.pid === action.payload);
             state.cart[IncrementId].qty++;
-            console.log(state.cart);
             return {
                 ...state,
                 isLoading: false,
@@ -38,7 +37,6 @@ export const Cartreducer = (state = initstate, action) => {
         case ActionTypes.DECR_QTY:
             let DcrementId = state.cart.findIndex((v) => v.pid === action.payload);
             state.cart[DcrementId].qty--;
-            console.log(state.cart);
             return {
                 cart: state.cart,
                 isLoading: false,

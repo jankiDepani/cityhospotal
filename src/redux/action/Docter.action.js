@@ -64,11 +64,11 @@ export const updateDoctos = (data) => (dispacth) => {
         // .then((response) => response.json())
         // .then((data) => dispacth({type:ActionTypes.DELETE_DOCTOR_DATA, payload:data}))
         // .catch((error) => console.log(error))
-        UpdateDotorcData()
-            .then((response) => dispacth({type:ActionTypes.DELETE_DOCTOR_DATA, payload: response.data}))
+        UpdateDotorcData(data)
+            .then((response) => dispacth({type:ActionTypes.UPDATE_DOCTOR_DATA, payload: response.data}))
             .catch((error) => console.log(error))
-    }catch {
-        console.log("error");
+    }catch(error) {
+        console.log(error);
     }
 
 }

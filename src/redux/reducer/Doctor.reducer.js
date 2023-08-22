@@ -7,7 +7,6 @@ const initState ={
 }
 
 export const DoctrorRducer = (state=initState , action) => {
-
     switch(action.type) {
         case ActionTypes.GET_DOCTOR_DATA:
             return {

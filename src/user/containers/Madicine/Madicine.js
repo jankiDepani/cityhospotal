@@ -5,6 +5,7 @@ import Heading from '../../component/UI/heading/Heading';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMadicineData } from '../../../redux/action/Madicine.action';
 import { AddToCart } from '../../../redux/action/Cart.action';
+import { addToCart } from '../../../redux/slice/CartSlice';
 
 function Madicine(props) {
 
@@ -31,7 +32,7 @@ function Madicine(props) {
     }
 
     const handleAddtocart = (id) =>  {
-        dispacth(AddToCart(id));
+        dispacth(addToCart(id));
     }
 
     return (

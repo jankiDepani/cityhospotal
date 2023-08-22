@@ -3,6 +3,7 @@ import Heading from '../../component/UI/heading/Heading';
 import { Button } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { CartDcrement, CartIncrement, removeItem } from '../../../redux/action/Cart.action';
+import { cartDcre, cartIncr, removeitem } from '../../../redux/slice/CartSlice';
 
 function Cart(props) {
     const dispatch = useDispatch();
@@ -17,15 +18,15 @@ function Cart(props) {
     let total = cartItem.reduce((acc, v) => acc + (v.qty * v.price), 0);
 
     const handleCartDcr = (id) => {
-        dispatch(CartDcrement(id));
+        dispatch(cartDcre(id));
     }
 
     const handleCartIncr = (id) => {
-        dispatch(CartIncrement(id));
+        dispatch(cartIncr(id));
     }
 
     const handleRemove = (id) => {
-        dispatch(removeItem(id));
+        dispatch(removeitem(id));
     }
 
     return (
@@ -64,7 +65,7 @@ function Cart(props) {
                             })
                         }
                     </div>
-                        <h5>Total bill : {total}</h5>
+                        <h5>Total bill : {total} $</h5>
                 </div>
             </div>
         </section>

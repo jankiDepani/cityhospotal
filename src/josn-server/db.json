@@ -18,20 +18,6 @@
   },
   "Doctors": [
     {
-      "doctorName": "janki",
-      "doctorDegignation": "mbbs",
-      "doctorDescripstion": "xjhasxiunsxk",
-      "doctorImg": "C:\\fakepath\\resume.pdf",
-      "id": 1
-    },
-    {
-      "doctorName": "janki",
-      "doctorDegignation": "seniour",
-      "doctorDescripstion": "xjhasxiunsxk",
-      "doctorImg": "C:\\fakepath\\202003103510075.pdf",
-      "id": 2
-    },
-    {
       "doctorName": "khushi",
       "doctorDegignation": "seniour",
       "doctorDescripstion": "hridfhceedijcdknciudhcdijc",
@@ -39,25 +25,25 @@
       "id": 4
     },
     {
-      "doctorName": "man",
+      "doctorName": "mansss",
       "doctorDegignation": "jasani",
       "doctorDescripstion": "sjkxnciosmxlsazmx",
       "doctorImg": "C:\\fakepath\\Profile.jpg",
       "id": 5
     },
     {
-      "doctorName": "dhruvi",
+      "doctorName": "dhruviweewe",
       "doctorDegignation": "juniour",
       "doctorDescripstion": "hridfhceedijcdknciudhcdijc",
       "doctorImg": "C:\\fakepath\\b.tech(CE)- JankiDepani.pdf",
       "id": 6
     },
     {
-      "doctorName": "nitaben",
-      "doctorDegignation": "daya",
-      "doctorDescripstion": "dopc,ivnuirfvcmoer,mcpofkc",
-      "doctorImg": "C:\\fakepath\\b.tech(CE)- JankiDepani.pdf",
-      "id": 7
+      "doctorName": "jaki",
+      "doctorDegignation": "jasani",
+      "doctorDescripstion": "zsxslkzmxslzxsaokzx;asz,xlzx",
+      "doctorImg": "C:\\fakepath\\Janki_Report_Internship.docx",
+      "id": 8
     }
   ],
   "medicines": [
@@ -71,21 +57,21 @@
     {
       "id": 2,
       "name": "Jakafi",
-      "price": 85,
+      "price": 69,
       "expiry": 2023,
       "desc": "Ruxolitinib, sold under the brand name Jakafi among others, is a medication used for the treatment of intermediate or high-risk myelofibrosis, a type of myeloproliferative neoplasm that affects the bone."
     },
     {
       "id": 3,
       "name": "Hydrea",
-      "price": 85,
+      "price": 23,
       "expiry": 2023,
       "desc": "Hydrea (hydroxyurea) is an antineoplastic (anti-cancer) agent used to treat melanoma, resistant chronic myelocytic leukemia, and recurrent, metastatic, or inoperable carcinoma of the ovary and primary squamous cell (epidermoid) carcinomas of the head and neck."
     },
     {
       "id": 4,
       "name": "Hiprex",
-      "price": 85,
+      "price": 93,
       "expiry": 2023,
       "desc": "Hexamethylenetetramine, also known as methenamine, hexamine, or urotropin, is a heterocyclic organic compound with the formula (CH₂)₆N₄. This white crystalline compound is highly soluble in water and polar organic solvents. It has a cage-like structure similar to adamantane"
     },
