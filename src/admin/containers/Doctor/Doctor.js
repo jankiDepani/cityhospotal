@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import DoctorsData from './DoctorsForm';
 import { useDispatch, useSelector } from 'react-redux';
-import { AddDoctos, deleteDoctor, getDoctor, updateDoctos } from '../../../redux/action/Docter.action';
+import { AddDoctos, deleteDoctor, updateDoctos } from '../../../redux/action/Docter.action';
 import { DataGrid } from '@mui/x-data-grid';
 import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import { getdoctor } from '../../../redux/slice/doctorsSlice';
 
 function Doctor(props) {
     const dispacth = useDispatch();
@@ -31,7 +32,7 @@ function Doctor(props) {
     }
 
     useEffect(() => {
-        dispacth(getDoctor());
+        dispacth(getdoctor());
     }, [])
 
     const columns = [
