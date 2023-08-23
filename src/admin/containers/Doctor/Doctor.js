@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import DoctorsData from './DoctorsForm';
 import { useDispatch, useSelector } from 'react-redux';
-import { AddDoctos, deleteDoctor, updateDoctos } from '../../../redux/action/Docter.action';
+// import { AddDoctos, deleteDoctor, updateDoctos } from '../../../redux/action/Docter.action';
 import { DataGrid } from '@mui/x-data-grid';
 import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import { getdoctor } from '../../../redux/slice/doctorsSlice';
+import { Adddoctor, deletedoctor, getdoctor, updatedoctor } from '../../../redux/slice/doctorsSlice';
 
 function Doctor(props) {
     const dispacth = useDispatch();
@@ -14,17 +14,16 @@ function Doctor(props) {
     const [update, setUpdate] = React.useState(null);
 
     const handleDoctorData = (data) => {
-        console.log(data);
         if (update) {
-            dispacth(updateDoctos(data))
+            dispacth(updatedoctor(data))
         }else {
-            dispacth(AddDoctos(data))
+            dispacth(Adddoctor(data))
         }
         setUpdate(null);
     }
 
     const handleDelete = (id) => {
-        dispacth(deleteDoctor(id))
+        dispacth(deletedoctor(id))
     }
 
     const handleupdate = (data) => {

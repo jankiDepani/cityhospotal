@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { GetDoctorData } from "../../common/apis/Doctors.api"
+import { AddDoctorData, DeleteDoctorData, GetDoctorData, UpdateDotorcData } from "../../common/apis/Doctors.api"
 
-const initialState ={
+const initialState = {
     Loading: false,
     doctors: [],
     error: null
@@ -9,20 +9,68 @@ const initialState ={
 
 export const getdoctor = createAsyncThunk(
     'Doctor/getdoctor',
-    async () =>  {
+    async () => {
         const response = await GetDoctorData();
-        
+
         return response.data;
     }
 )
 
-export const doctorsSlice = createSlice ({
+export const Adddoctor = createAsyncThunk(
+    'Doctor/Adddoctor',
+    async (data) => {
+        const response = await AddDoctorData(data);
+
+        return response.data;
+    }
+)
+
+export const updatedoctor = createAsyncThunk(
+    'Doctor/updatedoctor',
+    async (data) => {
+        const response = await UpdateDotorcData(data);
+
+        return response.data;
+    }
+)
+
+export const deletedoctor = createAsyncThunk(
+    'Doctor/deletedoctor',
+    async (id) => {
+        await DeleteDoctorData(id);
+
+        return id;
+    }
+)
+
+export const doctorsSlice = createSlice({
     name: 'doctors',
     initialState,
-    reducers : {},
-    extraReducers : (builder) =>  {
+    reducers: {},
+    extraReducers: (builder) => {
         builder.addCase(getdoctor.fulfilled, (state, action) => {
             state.doctors = action.payload;
+            state.Loading = false;
+            state.error = null
+        });
+        builder.addCase(Adddoctor.fulfilled, (state, action) => {
+            state.doctors = state.doctors.concat(action.payload);
+            state.Loading = false;
+            state.error = null
+        });
+        builder.addCase(updatedoctor.fulfilled, (state, action) => {
+            state.doctors = state.doctors.map((v) => {
+                if (v.id == action.payload.id) {
+                    return action.payload;
+                } else {
+                    return v;
+                }
+            });
+            state.Loading = false;
+            state.error = null
+        });
+        builder.addCase(deletedoctor.fulfilled, (state, action) => {
+            state.doctors = state.doctors.filter((v) => v.id !== action.payload);
             state.Loading = false;
             state.error = null
         })
