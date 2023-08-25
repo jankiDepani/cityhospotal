@@ -43,16 +43,28 @@ export const deletedoctor = createAsyncThunk(
     }
 )
 
+const handleLoding = (state) =>  {
+    state.Loading =  true;
+    state.error = null;
+}
+
+const handleerror = (state, action) => {
+    state.Loading = false ;
+    state.error = action.error.message;
+}
+
 export const doctorsSlice = createSlice({
     name: 'doctors',
     initialState,
     reducers: {},
     extraReducers: (builder) => {
+        builder.addCase(getdoctor.pending, handleLoding);
         builder.addCase(getdoctor.fulfilled, (state, action) => {
             state.doctors = action.payload;
             state.Loading = false;
             state.error = null
         });
+        builder.addCase(getdoctor.rejected, handleerror);
         builder.addCase(Adddoctor.fulfilled, (state, action) => {
             state.doctors = state.doctors.concat(action.payload);
             state.Loading = false;
