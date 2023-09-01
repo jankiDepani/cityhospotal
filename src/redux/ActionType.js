@@ -12,3 +12,5 @@ export const ADD_TO_CART = "ADD_TO_CART";
 export const INCR_QTY = "INCR_QTY";
 export const DECR_QTY = "DECR_QTY";
 export const REMOVE_ITEM = "REMOVE_ITEM";
+
+export const SIGNUP_USER = "SIGNUP_USER";

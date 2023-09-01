@@ -3,6 +3,8 @@ import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
 import { rootReducer } from "./reducer"
 import thunk from "redux-thunk"
+import createSagaMiddleware from 'redux-saga'
+import rootSaga from "./saga/root.saga"
 
 const persistConfig = {
     key: 'root',
@@ -10,11 +12,16 @@ const persistConfig = {
     whitelist: ['madicines', 'addtocart']
 }
 const persistedReducer = persistReducer(persistConfig, rootReducer)
+const sagaMiddleware = createSagaMiddleware()
+
+const MultiMiddleware =  [sagaMiddleware, thunk]
 
 
 export const configerStore = () => {
-    const store = createStore(persistedReducer, applyMiddleware(thunk));
+    const store = createStore(persistedReducer, applyMiddleware(...MultiMiddleware));
     let persistor = persistStore(store)
+
+    sagaMiddleware.run(rootSaga)
 
     return { store, persistor };
 }
