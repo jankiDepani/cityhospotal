@@ -4,33 +4,40 @@ import * as Yup from "yup";
 import Button from "../component/UI/button/Button";
 import Input from "../component/UI/inputbox/Input";
 import Heading from "../component/UI/heading/Heading";
+import { createUserWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase";
+import { useDispatch } from "react-redux";
+import { signupUser } from "../../redux/action/auth.action";
+
 
 function Auth(props) {
     const [authType, setauthType] = useState("singup");
 
     let authobj = {}, initval = {};
 
-    if(authType === "login") {
+    const dispatch = useDispatch();
+
+    if (authType === "login") {
         authobj = {
             email: Yup.string().email().required(),
-            password:Yup.string().min(8).required().matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/, "plz enter vaild password which inculs one alphabet, number,and special chacter"),
+            password: Yup.string().min(2).required(),
         };
         initval = {
             email: "",
             password: ""
         }
-    }else if (authType === "signup") {
+    } else if (authType === "signup") {
         authobj = {
             name: Yup.string().min(2).required().matches(/^[a-zA-Z]+$/, "please eneter vaild name"),
             email: Yup.string().email().required(),
-            password:Yup.string().min(8).required().matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/, "plz enter vaild password which inculs one alphabet, number,and special chacter"),
+            password: Yup.string().min(8).required().matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/, "plz enter vaild password which inculs one alphabet, number,and special chacter"),
         };
         initval = {
-            name:"",
+            name: "",
             email: "",
             password: ""
         }
-    }else {
+    } else {
         authobj = {
             email: Yup.string().email().required()
         };
@@ -39,18 +46,89 @@ function Auth(props) {
         }
     }
 
+    const handleSignup = (values) => {
+        try {
+            dispatch(signupUser(values));
+            
+            // createUserWithEmailAndPassword(auth, values.email, values.password)
+            //     .then((userCredential) => {
+            //         // Signed in 
+            //         const user = userCredential.user;
+
+            //         console.log(user);
+
+            //         sendEmailVerification(auth.currentUser)
+            //             .then(() => {
+            //                 console.log("Email verification link sent.");
+            //             });
+            //     })
+            //     .catch((error) => {
+            //         const errorCode = error.code;
+            //         const errorMessage = error.message;
+
+            //         console.log(errorCode);
+            //     });
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const handleLogin = (values) => {
+        try {
+            signInWithEmailAndPassword(auth, values.email, values.password)
+                .then((userCredential) => {
+                    // Signed in 
+                    const user = userCredential.user;
+                    console.log("Login Successfully");
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+
+                    console.log(errorCode);
+                });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const handleForgot = (values) => {
+        try {
+            sendPasswordResetEmail(auth, values.email)
+                .then(() => {
+                    console.log("Password reset link sent.");
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    
+                    console.log(errorCode);
+                });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     const authShemas = Yup.object().shape(authobj);
 
     const Formik = useFormik({
         initialValues: initval,
         validationSchema: authShemas,
-        enableReinitialize:true,
+        enableReinitialize: true,
         onSubmit: (values) => {
+            if (authType === "login") {
+                handleLogin(values);
+            } else if (authType === "signup") {
+                handleSignup(values)
+            } else {
+                handleForgot(values);
+            }
             alert(JSON.stringify(values, null, 2));
         },
     });
 
-    const {handleBlur, handleChange, handleSubmit, errors, values, touched} = Formik ;
+    const { handleBlur, handleChange, handleSubmit, errors, values, touched } = Formik;
 
     return (
         <section id="appointment" className="appointment">
@@ -100,9 +178,9 @@ function Auth(props) {
                                 data-rule="email"
                                 data-msg="Please enter a valid email"
                                 onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    value={values.email}
-                                    errorTxet={errors.email && touched.email ? errors.email : ""}
+                                onBlur={handleBlur}
+                                value={values.email}
+                                errorTxet={errors.email && touched.email ? errors.email : ""}
                             />
                         </div>
                         {authType === "forgotType" ? null : (
@@ -123,7 +201,7 @@ function Auth(props) {
                         )}
                         {authType === "login" ? (
                             <div className="text-center">
-                                <Button type="submit" btnType="primary" disabled={true}>Login</Button>
+                                <Button type="submit" btnType="primary" disabled={false}>Login</Button>
                             </div>
                         ) : authType === "signup" ? (
                             <div className="text-center">
