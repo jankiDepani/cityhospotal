@@ -49,26 +49,6 @@ function Auth(props) {
     const handleSignup = (values) => {
         try {
             dispatch(signupUser(values));
-            
-            // createUserWithEmailAndPassword(auth, values.email, values.password)
-            //     .then((userCredential) => {
-            //         // Signed in 
-            //         const user = userCredential.user;
-
-            //         console.log(user);
-
-            //         sendEmailVerification(auth.currentUser)
-            //             .then(() => {
-            //                 console.log("Email verification link sent.");
-            //             });
-            //     })
-            //     .catch((error) => {
-            //         const errorCode = error.code;
-            //         const errorMessage = error.message;
-
-            //         console.log(errorCode);
-            //     });
-
         } catch (error) {
             console.log(error);
         }

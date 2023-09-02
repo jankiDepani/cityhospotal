@@ -17,11 +17,13 @@ const sagaMiddleware = createSagaMiddleware()
 const MultiMiddleware =  [sagaMiddleware, thunk]
 
 
-export const configerStore = () => {
+const configerStore = () => {
     const store = createStore(persistedReducer, applyMiddleware(...MultiMiddleware));
-    let persistor = persistStore(store)
 
     sagaMiddleware.run(rootSaga)
 
-    return { store, persistor };
+    return store;
 }
+
+export const store = configerStore();
+export const persistor = persistStore(store)
