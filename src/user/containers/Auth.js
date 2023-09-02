@@ -7,7 +7,7 @@ import Heading from "../component/UI/heading/Heading";
 import { createUserWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import { useDispatch } from "react-redux";
-import { signupUser } from "../../redux/action/auth.action";
+import { loginUser, resetPasswordUser, signupUser } from "../../redux/action/auth.action";
 
 
 function Auth(props) {
@@ -56,18 +56,19 @@ function Auth(props) {
 
     const handleLogin = (values) => {
         try {
-            signInWithEmailAndPassword(auth, values.email, values.password)
-                .then((userCredential) => {
-                    // Signed in 
-                    const user = userCredential.user;
-                    console.log("Login Successfully");
-                })
-                .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
+            dispatch(loginUser(values))
+            // signInWithEmailAndPassword(auth, values.email, values.password)
+            //     .then((userCredential) => {
+            //         // Signed in 
+            //         const user = userCredential.user;
+            //         console.log("Login Successfully");
+            //     })
+            //     .catch((error) => {
+            //         const errorCode = error.code;
+            //         const errorMessage = error.message;
 
-                    console.log(errorCode);
-                });
+            //         console.log(errorCode);
+            //     });
         } catch (error) {
             console.log(error);
         }
@@ -75,16 +76,17 @@ function Auth(props) {
 
     const handleForgot = (values) => {
         try {
-            sendPasswordResetEmail(auth, values.email)
-                .then(() => {
-                    console.log("Password reset link sent.");
-                })
-                .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
+            dispatch(resetPasswordUser(values))
+            // sendPasswordResetEmail(auth, values.email)
+            //     .then(() => {
+            //         console.log("Password reset link sent.");
+            //     })
+            //     .catch((error) => {
+            //         const errorCode = error.code;
+            //         const errorMessage = error.message;
                     
-                    console.log(errorCode);
-                });
+            //         console.log(errorCode);
+            //     });
         } catch (error) {
             console.log(error);
         }

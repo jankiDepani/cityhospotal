@@ -28,3 +28,33 @@ export const SingupAPI = (values) => {
         }
     })
 }
+
+export const LoginAPI = (values) => {
+    // console.log("LoginAPI");
+    signInWithEmailAndPassword(auth, values.email, values.password)
+        .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+            console.log("Login Successfully");
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+
+            console.log(errorCode);
+        });
+}
+
+export const ResetPasswordAPI = (values) => {
+    // console.log("ResetPasswordAPI");
+    sendPasswordResetEmail(auth, values.email)
+        .then(() => {
+            console.log("Password reset link sent.");
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+
+            console.log(errorCode);
+        });
+}

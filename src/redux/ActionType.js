@@ -14,3 +14,5 @@ export const DECR_QTY = "DECR_QTY";
 export const REMOVE_ITEM = "REMOVE_ITEM";
 
 export const SIGNUP_USER = "SIGNUP_USER";
+export const LOGIN_uSER = "LOGIN_uSER";
+export const RESETPASSWORD_USER = "RESETPASSWORD_USER";
