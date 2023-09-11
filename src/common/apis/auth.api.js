@@ -14,14 +14,16 @@ export const SingupAPI = (values) => {
 
                     sendEmailVerification(auth.currentUser)
                         .then(() => {
-                            console.log("Email verification link sent.");
+                            resolve({user: user, message: "Email verification link sent."});
                         });
                 })
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
 
-                    console.log(errorCode);
+                    if(errorCode.localeCompare("auth/email-already-in-use") == 0 ) {
+                        reject({message: "this emailid already used"});
+                    }
                 });
         } catch (error) {
             console.log(error);
