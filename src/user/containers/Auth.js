@@ -7,7 +7,7 @@ import Heading from "../component/UI/heading/Heading";
 import { createUserWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import { useDispatch } from "react-redux";
-import { loginUser, resetPasswordUser, signupUser } from "../../redux/action/auth.action";
+import { authError, loginUser, resetPasswordUser, signupUser } from "../../redux/action/auth.action";
 
 
 function Auth(props) {
@@ -50,7 +50,8 @@ function Auth(props) {
         try {
             dispatch(signupUser(values));
         } catch (error) {
-            console.log(error);
+            // console.log(error);
+            dispatch(authError(error))
         }
     }
 
