@@ -19,18 +19,22 @@ import { Provider } from "react-redux";
 // import Auth2 from "./containers/Auth2";
 import { PersistGate } from 'redux-persist/integration/react'
 import { store, persistor } from './redux/store'
+import { SnackbarProvider } from "notistack";
+import Alert from "./user/component/Alert";
 
 function App() {
   return (
+    <SnackbarProvider>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
+        <Alert />
         <Routes>
           <Route path="/*" element={<UserRoute />} />
           <Route path="/admin/*" element={<AdminRoute />} />
         </Routes>
       </PersistGate>
     </Provider>
-
+    </SnackbarProvider>
   );
 }
 
