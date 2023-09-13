@@ -16,6 +16,7 @@ import Auth from "../user/containers/Auth";
 import Madicine from '../user/containers/Madicine/Madicine';
 import Counter from '../user/containers/Counter/Counter';
 import Cart from '../user/containers/Cart/Cart';
+import PrivateRoute from '../user/containers/PrivateRoute';
 
 function UserRoute(props) {
     return (
@@ -38,7 +39,9 @@ function UserRoute(props) {
                     <Route path=":id" element={<Doctor />} />
                     <Route path="Visiting_Doctor" element={<VisitingDoctor />} />
                 </Route>
-                <Route path='/Madicine' element={ <Madicine />} />
+                <Route element={<PrivateRoute />}>
+                    <Route path='Madicine' element={<Madicine />} />
+                </Route>
                 <Route path="*" element={<NotFound />} />
             </Routes>
             <Footer />

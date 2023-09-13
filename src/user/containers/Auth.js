@@ -8,6 +8,7 @@ import { createUserWithEmailAndPassword, sendEmailVerification, sendPasswordRese
 import { auth } from "../../firebase";
 import { useDispatch } from "react-redux";
 import { authError, loginUser, resetPasswordUser, signupUser } from "../../redux/action/auth.action";
+import { useNavigate } from "react-router-dom";
 
 
 function Auth(props) {
@@ -55,9 +56,18 @@ function Auth(props) {
         }
     }
 
+    const navigate = useNavigate();
+
     const handleLogin = (values) => {
         try {
-            dispatch(loginUser(values))
+            dispatch(
+                loginUser({
+                    data: values,
+                    callback: (route) => {
+                        navigate(route)
+                    }
+                })
+            )
             // signInWithEmailAndPassword(auth, values.email, values.password)
             //     .then((userCredential) => {
             //         // Signed in 

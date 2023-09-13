@@ -21,6 +21,9 @@ function Header(props) {
         },
     }));
 
+    const auth = useSelector(state => state.auth);
+
+
     return (
         <div className="main-header">
             <div id="topbar" className="d-flex align-items-center fixed-top">
@@ -66,9 +69,16 @@ function Header(props) {
                     </nav>
                     <Link to="/Appoinment"><Button>Make an Appointment</Button>
                     </Link>
-                    <Link to="/Auth">
-                        <Button>Login/ Signup</Button>
-                    </Link>
+                    {
+                        auth.user ?
+                            <Link to="/Auth">
+                                <Button>Logout</Button>
+                            </Link> :
+                            <Link to="/Auth">
+                                <Button>Login/ Signup</Button>
+                            </Link>
+                    }
+
                 </div>
             </header>
         </div>

@@ -15,6 +15,7 @@ export const REMOVE_ITEM = "REMOVE_ITEM";
 
 export const SIGNUP_USER = "SIGNUP_USER";
 export const LOGIN_uSER = "LOGIN_uSER";
+export const LOGGEDIN_USER = "LOGGEDIN_USER";
 export const RESETPASSWORD_USER = "RESETPASSWORD_USER";
 export const EMAIL_VERIFICATION = "EMAIL_VERIFICATION";
 

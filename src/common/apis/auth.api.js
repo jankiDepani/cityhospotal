@@ -14,15 +14,15 @@ export const SingupAPI = (values) => {
 
                     sendEmailVerification(auth.currentUser)
                         .then(() => {
-                            resolve({user: user, message: "Email verification link sent."});
+                            resolve({ user: user, message: "Email verification link sent." });
                         });
                 })
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
 
-                    if(errorCode.localeCompare("auth/email-already-in-use") == 0 ) {
-                        reject({message: "this emailid already used"});
+                    if (errorCode.localeCompare("auth/email-already-in-use") == 0) {
+                        reject({ message: "this emailid already used" });
                     }
                 });
         } catch (error) {
@@ -33,18 +33,26 @@ export const SingupAPI = (values) => {
 
 export const LoginAPI = (values) => {
     // console.log("LoginAPI");
-    signInWithEmailAndPassword(auth, values.email, values.password)
-        .then((userCredential) => {
-            // Signed in 
-            const user = userCredential.user;
-            console.log("Login Successfully");
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
+    return new Promise((resolve, reject) => {
+        try {
+            signInWithEmailAndPassword(auth, values.email, values.password)
+                .then((userCredential) => {
+                    // Signed in 
+                    const user = userCredential.user;
+                    resolve({ user: user, message: "Login Successfully" });
 
-            console.log(errorCode);
-        });
+                    // console.log("Login Successfully");
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+
+                    console.log(errorCode);
+                });
+        } catch (error) {
+            console.log(error);
+        }
+    })
 }
 
 export const ResetPasswordAPI = (values) => {

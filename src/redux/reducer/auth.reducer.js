@@ -1,7 +1,7 @@
 import * as ActionTypes from '../ActionType'
 
 const initstate = {
-    user:[],
+    user: null,
     isLoading:false,
     Error:null
 }
@@ -22,6 +22,12 @@ export const authReducer = (state=initstate, action) => {
                 user: [],
                 isLoading: false,
                 error: action.payload,
+            }
+        case ActionTypes.LOGGEDIN_USER:
+            return {
+                user: action.payload,
+                isLoading: false,
+                error: null
             }
         default:
             return state
