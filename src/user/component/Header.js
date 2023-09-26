@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from './UI/button/Button';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { logOutuser } from '../../redux/action/auth.action';
 
 function Header(props) {
     let cartData = useSelector(state => state.addtocart);
@@ -22,7 +23,13 @@ function Header(props) {
     }));
 
     const auth = useSelector(state => state.auth);
+    const dispacth = useDispatch();
 
+    const haldleLogout = () => {
+        console.log('logout');
+        dispacth(logOutuser())
+    }
+    console.log(auth);
 
     return (
         <div className="main-header">
@@ -72,13 +79,13 @@ function Header(props) {
                     {
                         auth.user ?
                             <Link to="/Auth">
-                                <Button>Logout</Button>
+                                {/* <Button onClick={() => console.log("logout")}>Logout</Button> */}
+                                <button onClick={() => haldleLogout()}>logout</button>
                             </Link> :
                             <Link to="/Auth">
                                 <Button>Login/ Signup</Button>
                             </Link>
                     }
-
                 </div>
             </header>
         </div>

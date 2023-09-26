@@ -1,8 +1,7 @@
-import { createUserWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "../../firebase";
 
 export const SingupAPI = (values) => {
-    console.log(values);
     return new Promise((resolve, reject) => {
         try {
             createUserWithEmailAndPassword(auth, values.email, values.password)
@@ -14,7 +13,7 @@ export const SingupAPI = (values) => {
 
                     sendEmailVerification(auth.currentUser)
                         .then(() => {
-                            resolve({ user: user, message: "Email verification link sent." });
+                            resolve({ user: user, message: "Email verification link sent."});
                         });
                 })
                 .catch((error) => {
@@ -50,6 +49,22 @@ export const LoginAPI = (values) => {
                     console.log(errorCode);
                 });
         } catch (error) {
+            console.log(error);
+        }
+    })
+}
+
+export const LogoutAPI = () => {
+    console.log("logoutAPI called");
+    return new Promise((resolve, reject) => {
+        try {
+            signOut(auth).then(() => {
+                // Sign-out successful.
+                console.log("Sign-out successful");
+            }).catch((error) => {
+                // An error happened.
+            });
+        }catch (error) {
             console.log(error);
         }
     })

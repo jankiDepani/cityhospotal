@@ -19,7 +19,7 @@ export const authReducer = (state=initstate, action) => {
             return state
         case ActionTypes.AUTH_ERROR :
             return {
-                user: [],
+                user: null,
                 isLoading: false,
                 error: action.payload,
             }
@@ -28,6 +28,12 @@ export const authReducer = (state=initstate, action) => {
                 user: action.payload,
                 isLoading: false,
                 error: null
+            }
+        case ActionTypes.LOGOUT_USER:
+            return{
+                user: null,
+                isLoading: false,
+                error: null,
             }
         default:
             return state

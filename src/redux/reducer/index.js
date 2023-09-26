@@ -7,6 +7,7 @@ import CartReducer from  "../slice/CartSlice"
 import doctorsReducer from "../slice/doctorsSlice";
 import { authReducer } from "./auth.reducer";
 import { alertReducer } from "./alert.reducer";
+import { aptReducer } from "../slice/AppointmentSlice";
 
 export const rootReducer = combineReducers({
     counter: CounterReducer,
@@ -14,5 +15,6 @@ export const rootReducer = combineReducers({
     madicines: MadicineReducer,
     addtocart: CartReducer,
     auth: authReducer,
-    alert: alertReducer
+    alert: alertReducer,
+    apt: aptReducer
 })

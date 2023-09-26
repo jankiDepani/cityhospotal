@@ -1,8 +1,8 @@
 import { all, call, put, takeEvery, takeLatest } from 'redux-saga/effects'
 import * as ActionTypes from '../ActionType'
-import { LoginAPI, ResetPasswordAPI, SingupAPI } from '../../common/apis/auth.api'
+import { LoginAPI, LogoutAPI, ResetPasswordAPI, SingupAPI } from '../../common/apis/auth.api'
 import { setAlert } from '../action/alert.action'
-import { loggedInUser } from '../action/auth.action'
+import { loggedInUser, logOutuser} from '../action/auth.action'
 
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
 function* singupUser(action) {
@@ -24,6 +24,19 @@ function* loginUser(action) {
         // yield put({ type: 'USER_FETCH_FAILED', message: e.message })
     }
 }
+
+function* logOutUser(action) {
+    console.log("logout saga")
+    try {
+        const user = yield call(LogoutAPI)
+        yield put(logOutuser())
+        action.payload.callback("/Auth");
+    } catch (e) {
+        console.log(e);
+        // yield put({ type: 'USER_FETCH_FAILED', message: e.message })
+    }
+}
+
 function* restePasswordUser(action) {
     try {
         const user = yield call(ResetPasswordAPI, action.payload)
@@ -42,6 +55,10 @@ function* singupSaga() {
 function* loginSaga () {
     yield takeEvery(ActionTypes.LOGIN_uSER, loginUser)
 }
+
+function* logoutSaga () {
+    yield takeEvery(ActionTypes.LOGOUT_USER, logOutUser)
+}
 function* resetPasswordSaga () {
     yield takeEvery(ActionTypes.RESETPASSWORD_USER, restePasswordUser)
 }
@@ -50,6 +67,7 @@ export default function* authSaga() {
     yield all([
         singupSaga(),
         loginSaga(),
+        logoutSaga(),
         resetPasswordSaga()
     ])
 } 
