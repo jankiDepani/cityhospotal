@@ -29,7 +29,7 @@ function Header(props) {
         console.log('logout');
         dispacth(logOutuser())
     }
-    console.log(auth);
+    // console.log(auth);
 
     return (
         <div className="main-header">

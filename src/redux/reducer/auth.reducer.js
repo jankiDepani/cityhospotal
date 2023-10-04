@@ -7,7 +7,7 @@ const initstate = {
 }
 
 export const authReducer = (state=initstate, action) => {
-    console.log(action);
+    // console.log(action);
     switch(action.type){
         case ActionTypes.SIGNUP_USER:
             return state
